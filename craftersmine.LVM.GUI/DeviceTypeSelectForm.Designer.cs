@@ -31,10 +31,10 @@ namespace craftersmine.LVM.GUI
         {
             this.components = new System.ComponentModel.Container();
             this.devList = new System.Windows.Forms.ListView();
-            this.ok = new System.Windows.Forms.Button();
-            this.cancel = new System.Windows.Forms.Button();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.icons = new System.Windows.Forms.ImageList(this.components);
+            this.ok = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // devList
@@ -52,6 +52,17 @@ namespace craftersmine.LVM.GUI
             this.devList.TabIndex = 0;
             this.devList.UseCompatibleStateImageBehavior = false;
             this.devList.View = System.Windows.Forms.View.Details;
+            // 
+            // name
+            // 
+            this.name.Text = "Device Type Name";
+            this.name.Width = 295;
+            // 
+            // icons
+            // 
+            this.icons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.icons.ImageSize = new System.Drawing.Size(16, 16);
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // ok
             // 
@@ -73,17 +84,7 @@ namespace craftersmine.LVM.GUI
             this.cancel.TabIndex = 2;
             this.cancel.Text = "Cancel";
             this.cancel.UseVisualStyleBackColor = true;
-            // 
-            // name
-            // 
-            this.name.Text = "Device Type Name";
-            this.name.Width = 295;
-            // 
-            // icons
-            // 
-            this.icons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.icons.ImageSize = new System.Drawing.Size(16, 16);
-            this.icons.TransparentColor = System.Drawing.Color.Transparent;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // DeviceTypeSelectForm
             // 

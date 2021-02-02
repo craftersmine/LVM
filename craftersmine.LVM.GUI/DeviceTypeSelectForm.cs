@@ -16,6 +16,8 @@ namespace craftersmine.LVM.GUI
 {
     public partial class DeviceTypeSelectForm : Form
     {
+        public BaseDevice CreatedDevice { get; private set; }
+
         public DeviceTypeSelectForm()
         {
             InitializeComponent();
@@ -24,13 +26,24 @@ namespace craftersmine.LVM.GUI
                 var attr = devType.GetCustomAttribute<DeviceComponentAttribute>();
                 var icon = DeviceTypeRegistry.GetDeviceTypeIcon(devType.Name.ToLower());
                 icons.Images.Add(devType.Name.ToLower(), icon);
-                devList.Items.Add(new ListViewItem() { Text = attr.UserFriendlyName, ImageKey = devType.Name.ToLower() });
+                devList.Items.Add(new ListViewItem() { Text = attr.UserFriendlyName, ImageKey = devType.Name.ToLower(), Tag = devType });
             }
         }
 
         private void ok_Click(object sender, EventArgs e)
         {
-            
+            if (devList.SelectedItems.Count > 0)
+            {
+                Type devType = (Type)devList.SelectedItems[0].Tag;
+
+                var device = devType.GetConstructor(Type.EmptyTypes).Invoke(new object[] { });
+                CreatedDevice = (BaseDevice)device;
+            }
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
