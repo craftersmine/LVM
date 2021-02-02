@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MachineCreateForm));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.devices = new System.Windows.Forms.ListView();
+            this.dev = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.icons = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.add = new System.Windows.Forms.ToolStripButton();
@@ -40,25 +43,42 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.configuratorPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listView1
+            // devices
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.devices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(-1, 28);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(232, 358);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.devices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.dev});
+            this.devices.FullRowSelect = true;
+            this.devices.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.devices.HideSelection = false;
+            this.devices.Location = new System.Drawing.Point(-1, 28);
+            this.devices.Name = "devices";
+            this.devices.Size = new System.Drawing.Size(232, 358);
+            this.devices.SmallImageList = this.icons;
+            this.devices.TabIndex = 0;
+            this.devices.UseCompatibleStateImageBehavior = false;
+            this.devices.View = System.Windows.Forms.View.Details;
+            this.devices.ItemActivate += new System.EventHandler(this.devices_ItemActivate);
+            // 
+            // dev
+            // 
+            this.dev.Text = "Device";
+            this.dev.Width = 208;
+            // 
+            // icons
+            // 
+            this.icons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.icons.ImageSize = new System.Drawing.Size(16, 16);
+            this.icons.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // panel1
             // 
@@ -66,7 +86,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.toolStrip1);
-            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Controls.Add(this.devices);
             this.panel1.Location = new System.Drawing.Point(0, 63);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(232, 389);
@@ -166,21 +186,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Creating Virtual Machine";
             // 
-            // flowLayoutPanel1
+            // configuratorPanel
             // 
-            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(234, 63);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(525, 389);
-            this.flowLayoutPanel1.TabIndex = 4;
+            this.configuratorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.configuratorPanel.AutoScroll = true;
+            this.configuratorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.configuratorPanel.Location = new System.Drawing.Point(234, 63);
+            this.configuratorPanel.Name = "configuratorPanel";
+            this.configuratorPanel.Size = new System.Drawing.Size(525, 389);
+            this.configuratorPanel.TabIndex = 4;
             // 
             // MachineCreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(759, 506);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.configuratorPanel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -204,7 +227,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView devices;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel panel2;
@@ -215,6 +238,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ImageList icons;
+        private System.Windows.Forms.ColumnHeader dev;
+        private System.Windows.Forms.Panel configuratorPanel;
     }
 }
