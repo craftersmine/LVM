@@ -1,4 +1,5 @@
 ﻿using craftersmine.LVM.Core.Attributes;
+using craftersmine.LVM.Core.Configurators;
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace craftersmine.LVM.Core.Components
     /// <summary>
     /// Represents an EEPROM. This class cannot be inherited
     /// </summary>
-    [DeviceComponent(ComponentType = "eeprom", DefaultTooltip = "Contains machine firmware", UserFriendlyName = "EEPROM")]
+    [DeviceComponent(ComponentType = "eeprom", DefaultTooltip = "Contains machine firmware", UserFriendlyName = "EEPROM", DeviceConfigurator = typeof(EEPROMConfigurator))]
     public sealed class EEPROM : BaseDevice
     {
         [DeviceIgnoredProperty]
