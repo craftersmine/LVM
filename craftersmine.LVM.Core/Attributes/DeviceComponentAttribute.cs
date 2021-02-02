@@ -29,5 +29,6 @@ namespace craftersmine.LVM.Core.Attributes
         public string DefaultTooltip { get; set; } = "Generic device";
         public bool ShowStatusBarIcon { get; set; } = true;
         public string UserFriendlyName { get; set; } = "Generic Device";
+        public Type DeviceConfigurator { get; set; }
     }
 }
