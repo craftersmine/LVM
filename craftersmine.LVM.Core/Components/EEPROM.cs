@@ -20,6 +20,7 @@ namespace craftersmine.LVM.Core.Components
         [DeviceIgnoredProperty]
         private string Code { get; set; }
         private Dictionary<string, object> _params = new Dictionary<string, object>();
+        private bool isReadOnlyFlag = false;
 
         public string BiosCodeFilepath { get; set; }
         public bool UseStandardBios { get; set; } = true;
@@ -33,7 +34,7 @@ namespace craftersmine.LVM.Core.Components
         /// Is EEPROM Read-only
         /// </summary>
         [LuaCallback(IsGetter = true, IsSetter = false)]
-        public bool isReadOnly { get; set; }
+        public bool isReadOnly { get { if (UseStandardBios) return true; else return isReadOnlyFlag; } set { isReadOnlyFlag = value; } }
 
         /// <summary>
         /// Gets EEPROM max size
