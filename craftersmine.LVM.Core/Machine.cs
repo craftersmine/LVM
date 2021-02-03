@@ -52,12 +52,12 @@ namespace craftersmine.LVM.Core
         /// </summary>
         /// <param name="machineAddress">Machine address</param>
         /// <param name="displayInterface">Display interface</param>
-        public Machine(Guid machineAddress, string machineRootDir)
+        public Machine(Guid machineAddress, string machineRootDir, MachineComponent machineComp)
         {
             IsRunning = false;
 
             MachineRootDirectory = machineRootDir;
-            machineComponent = new MachineComponent();
+            machineComponent = machineComp;
 
             DeviceBus = new DeviceBus();
             machineComponent.Address = machineAddress;
@@ -66,6 +66,8 @@ namespace craftersmine.LVM.Core
 
             RunningInstance = this;
         }
+
+        public Machine(Guid machineAddress, string machineRootDir) : this(machineAddress, machineRootDir, new MachineComponent()) { }
 
         private void Processor_ProcessorHalted(object sender, ProcessorHaltEventArgs e)
         {
