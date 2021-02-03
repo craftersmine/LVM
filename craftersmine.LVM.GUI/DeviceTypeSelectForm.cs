@@ -34,10 +34,7 @@ namespace craftersmine.LVM.GUI
         {
             if (devList.SelectedItems.Count > 0)
             {
-                Type devType = (Type)devList.SelectedItems[0].Tag;
-
-                var device = devType.GetConstructor(Type.EmptyTypes).Invoke(new object[] { });
-                CreatedDevice = (BaseDevice)device;
+                CreatedDevice = Machine.CreateDevice<BaseDevice>((Type)devList.SelectedItems[0].Tag);
             }
         }
 

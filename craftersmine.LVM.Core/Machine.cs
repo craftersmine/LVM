@@ -278,5 +278,16 @@ namespace craftersmine.LVM.Core
                 return false;
             return true;
         }
+
+        public static IDevice CreateDevice(Type deviceType)
+        {
+            var device = deviceType.GetConstructor(Type.EmptyTypes).Invoke(new object[] { });
+            return (IDevice)device;
+        }
+
+        public static T CreateDevice<T>(Type deviceType)
+        {
+            return (T)CreateDevice(deviceType);
+        }
     }
 }
