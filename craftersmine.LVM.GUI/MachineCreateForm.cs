@@ -1,5 +1,6 @@
 ﻿using craftersmine.LVM.Core;
 using craftersmine.LVM.Core.Attributes;
+using craftersmine.LVM.Core.Components;
 using craftersmine.LVM.Core.Exceptions;
 
 using System;
@@ -17,8 +18,15 @@ namespace craftersmine.LVM.GUI
 {
     public partial class MachineCreateForm : Form
     {
-        public IDeviceConfigurator currentConfigurator;
-        public IDevice currentDevice;
+        private IDeviceConfigurator currentConfigurator;
+        private IDevice currentDevice;
+
+        private MachineComponent machineComp = new MachineComponent();
+        private EEPROM eeprom = new EEPROM();
+        private Core.Components.Screen scr = new Core.Components.Screen();
+        private GPU gpu = new GPU();
+
+        public Machine CreatedMachine { get; private set; }
 
         public MachineCreateForm()
         {
@@ -29,6 +37,12 @@ namespace craftersmine.LVM.GUI
                 var icon = DeviceTypeRegistry.GetDeviceTypeIcon(devType.Name.ToLower());
                 icons.Images.Add(devType.Name.ToLower(), icon);
             }
+
+
+            devices.Items.Add(new ListViewItem() { Text = machineComp.GetComponentAttribute().UserFriendlyName, Tag = machineComp, ImageKey = machineComp.GetType().Name.ToLower() });
+            devices.Items.Add(new ListViewItem() { Text = eeprom.GetComponentAttribute().UserFriendlyName, Tag = eeprom, ImageKey = eeprom.GetType().Name.ToLower() });
+            devices.Items.Add(new ListViewItem() { Text = scr.GetComponentAttribute().UserFriendlyName, Tag = scr, ImageKey = scr.GetType().Name.ToLower() });
+            devices.Items.Add(new ListViewItem() { Text = gpu.GetComponentAttribute().UserFriendlyName, Tag = gpu, ImageKey = gpu.GetType().Name.ToLower() });
         }
 
         private void MachineCreateForm_Load(object sender, EventArgs e)
@@ -74,10 +88,35 @@ namespace craftersmine.LVM.GUI
                         currentDevice = dev;
                         currentConfigurator.LoadConfig(currentDevice);
                     }
-                    else throw new DeviceConfiguratorException("Invalid Device Configurator \"" + configurator.Name + "\"! Check for " + nameof(DeviceConfiguratorAttribute) + ", " + nameof(IDeviceConfigurator) + " interface inheritance and it is a control");
+                    else MessageBox.Show("Invalid Device Configurator \"" + configurator.Name + "\"! Check for " + nameof(DeviceConfiguratorAttribute) + ", " + nameof(IDeviceConfigurator) + " interface inheritance and it is a control", "Unable to load device configurator!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else Settings.LoggerInstance.Log(LogEntryType.Warning, "No configurator is assigned to device type \"" + dev.GetComponentAttribute().ComponentType + "\"! Device cannot be configured through GUI! Assign proper configurator through \"" + nameof(DeviceComponentAttribute) + "\"");
             }
+        }
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+            if (devices.SelectedItems.Count > 0)
+            {
+                var dev = devices.SelectedItems[0];
+                var devType = ((BaseDevice)dev.Tag).GetComponentAttribute().ComponentType;
+                if (devType != DeviceTypes.EEPROM || devType != DeviceTypes.Screen || devType != DeviceTypes.Gpu || devType != DeviceTypes.Machine || devType != DeviceTypes.Keyboard)
+                    devices.Items.Remove(dev);
+                else MessageBox.Show("Unable to remove device! This device is required to run VM", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            devices.Items.Clear();
+        }
+
+        private void create_Click(object sender, EventArgs e)
+        {
+            CreatedMachine = new Machine(machineComp.Address, machineComp.MachineRootDirectory, machineComp);
+            CreatedMachine.DeviceBus.ConnectDevice(eeprom, eeprom.Address, false);
+            CreatedMachine.DeviceBus.ConnectDevice(scr, scr.Address, false);
+            CreatedMachine.DeviceBus.ConnectDevice(gpu, gpu.Address, false);
         }
     }
 }
