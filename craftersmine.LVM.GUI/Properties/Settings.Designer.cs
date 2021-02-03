@@ -22,5 +22,16 @@ namespace craftersmine.LVM.GUI.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection AddedMachines {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["AddedMachines"]));
+            }
+            set {
+                this["AddedMachines"] = value;
+            }
+        }
     }
 }
