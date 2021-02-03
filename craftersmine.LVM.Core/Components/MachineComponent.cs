@@ -14,6 +14,11 @@ namespace craftersmine.LVM.Core.Components
     [DeviceComponent(ComponentType = "machine", DefaultTooltip = "Virtual machine", UserFriendlyName = "Machine")]
     public sealed class MachineComponent : BaseDevice
     {
+        [DeviceIgnoredProperty]
+        public string MachineRootDirectory { get; set; }
+        [DeviceIgnoredProperty]
+        public string MachineName { get; set; }
+
         public MachineComponent()
         {
             DeviceIcon = DeviceDefaultIcons.Machine;
