@@ -21,6 +21,8 @@ namespace craftersmine.LVM.GUI
         {
             InitializeComponent();
             MachineEvents.MachineHalted += MachineEvents_MachineHalted;
+
+            UpdateMachines();
         }
 
         private void MachineEvents_MachineHalted(object sender, MachineHaltedEventArgs e)
@@ -42,9 +44,24 @@ namespace craftersmine.LVM.GUI
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            var createForm = new MachineCreateForm();
-            createForm.ShowDialog();
-            createForm.Dispose();
+            using (var createForm = new MachineCreateForm())
+            {
+                createForm.ShowDialog();
+                Machine createdMachine = createForm.CreatedMachine;
+                createdMachine.SaveMachine();
+                Properties.Settings.Default.AddedMachines.Add(createdMachine.MachineRootDirectory);
+                UpdateMachines();
+            }
+        }
+
+        private void UpdateMachines()
+        {
+            machines.Items.Clear();
+            foreach (var m in Properties.Settings.Default.AddedMachines)
+            {
+                var machine = Machine.LoadMachine(m);
+                machines.Items.Add(new ListViewItem() { Text = machine.MachineName, ImageKey = "default", Tag = machine });
+            }
         }
     }
 }
