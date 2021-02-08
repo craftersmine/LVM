@@ -219,6 +219,8 @@ namespace craftersmine.LVM.Core
                 machine.DeviceBus.ConnectDevice(dev, dev.Address, true);
             }
 
+            reader.Close();
+
             return machine;
         }
 
@@ -230,6 +232,7 @@ namespace craftersmine.LVM.Core
             TextWriter writer = new StreamWriter(metaFile);
             serializer.Serialize(writer, metadata);
             Settings.LoggerInstance.Log(LogEntryType.Info, "Machine created in \"" + machineRootDir + "\"!");
+            writer.Close();
         }
 
         private static MachineMetadata createMachineMetadata(string machineName)
