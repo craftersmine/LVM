@@ -35,6 +35,8 @@ namespace craftersmine.LVM.GUI
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            // TODO: Remove method
+
             string machineDir = "D:\\TestLVMMachine";
             Machine machine = Machine.LoadMachine(machineDir);
             var machForm = new MachineForm(machine);
@@ -44,6 +46,8 @@ namespace craftersmine.LVM.GUI
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            // TODO: Remove method
+
             using (var createForm = new MachineCreateForm())
             {
                 createForm.ShowDialog();
