@@ -114,6 +114,7 @@ namespace craftersmine.LVM.GUI
         private void cancel_Click(object sender, EventArgs e)
         {
             devices.Items.Clear();
+            this.Close();
         }
 
         private void create_Click(object sender, EventArgs e)
@@ -122,6 +123,7 @@ namespace craftersmine.LVM.GUI
             CreatedMachine.DeviceBus.ConnectDevice(eeprom, eeprom.Address, false);
             CreatedMachine.DeviceBus.ConnectDevice(scr, scr.Address, false);
             CreatedMachine.DeviceBus.ConnectDevice(gpu, gpu.Address, false);
+            this.Close();
         }
     }
 }
