@@ -143,6 +143,8 @@ namespace craftersmine.LVM.Core
         public void SaveDevice()
         {
             string devFilePath = Path.Combine(Machine.RunningInstance.MachineRootDirectory, "devices", this.GetType().Name.ToLower() + "_" + Address + ".lvmd");
+            if (!Directory.Exists(Path.Combine(Machine.RunningInstance.MachineRootDirectory, "devices")))
+                Directory.CreateDirectory(Path.Combine(Machine.RunningInstance.MachineRootDirectory, "devices"));
             XmlSerializer serializer = new XmlSerializer(this.GetType());
             TextWriter writer = new StreamWriter(devFilePath);
             serializer.Serialize(writer, this);
