@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Screen = craftersmine.LVM.Core.Components.Screen;
+
 namespace craftersmine.LVM.GUI
 {
     public partial class MachineCreateForm : Form
