@@ -21,10 +21,10 @@ namespace craftersmine.LVM.GUI
         private IDeviceConfigurator currentConfigurator;
         private IDevice currentDevice;
 
-        private MachineComponent machineComp = new MachineComponent();
-        private EEPROM eeprom = new EEPROM();
-        private Core.Components.Screen scr = new Core.Components.Screen();
-        private GPU gpu = new GPU();
+        private MachineComponent machineComp;
+        private EEPROM eeprom;
+        private Screen scr;
+        private GPU gpu;
 
         public Machine CreatedMachine { get; private set; }
 
@@ -37,6 +37,11 @@ namespace craftersmine.LVM.GUI
                 var icon = DeviceTypeRegistry.GetDeviceTypeIcon(devType.Name.ToLower());
                 icons.Images.Add(devType.Name.ToLower(), icon);
             }
+
+            machineComp = Machine.CreateDevice<MachineComponent>();
+            eeprom = Machine.CreateDevice<EEPROM>();
+            scr = Machine.CreateDevice<Screen>();
+            gpu = Machine.CreateDevice<GPU>();
 
 
             devices.Items.Add(new ListViewItem() { Text = machineComp.GetComponentAttribute().UserFriendlyName, Tag = machineComp, ImageKey = machineComp.GetType().Name.ToLower() });
