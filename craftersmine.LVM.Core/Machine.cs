@@ -293,9 +293,9 @@ namespace craftersmine.LVM.Core
             return (IDevice)device;
         }
 
-        public static T CreateDevice<T>(Type deviceType)
+        public static T CreateDevice<T>()
         {
-            return (T)CreateDevice(deviceType);
+            return (T)CreateDevice(typeof(T));
         }
     }
 }
