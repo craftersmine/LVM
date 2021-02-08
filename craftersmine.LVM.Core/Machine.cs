@@ -289,6 +289,7 @@ namespace craftersmine.LVM.Core
         public static IDevice CreateDevice(Type deviceType)
         {
             var device = deviceType.GetConstructor(Type.EmptyTypes).Invoke(new object[] { });
+            ((IDevice)device).Address = Guid.NewGuid();
             return (IDevice)device;
         }
 
