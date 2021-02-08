@@ -60,8 +60,30 @@ namespace craftersmine.LVM.GUI
 
         private void UpdateMachines()
         {
+            List<string> removePending = new List<string>();
             machines.Items.Clear();
-            foreach (var m in Properties.Settings.Default.AddedMachines)
+            if (craftersmine.LVM.GUI.Properties.Settings.Default.AddedMachines != null)
+                foreach (var m in craftersmine.LVM.GUI.Properties.Settings.Default.AddedMachines)
+                {
+                    try
+                    {
+                        var machine = Machine.LoadMachine(m);
+                        machines.Items.Add(new ListViewItem() { Text = machine.MachineName, ImageKey = "default", Tag = machine.MachineRootDirectory });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message + ": \"" + m + "\"", "Error loading machine!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        removePending.Add(m);
+                    }
+                }
+
+            foreach (var rm in removePending)
+            {
+                craftersmine.LVM.GUI.Properties.Settings.Default.AddedMachines.Remove(rm);
+            }
+            craftersmine.LVM.GUI.Properties.Settings.Default.Save();
+        }
+
             {
                 var machine = Machine.LoadMachine(m);
                 machines.Items.Add(new ListViewItem() { Text = machine.MachineName, ImageKey = "default", Tag = machine });
