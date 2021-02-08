@@ -1,4 +1,5 @@
 ﻿using craftersmine.LVM.Core.Attributes;
+using craftersmine.LVM.Core.Configurators;
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace craftersmine.LVM.Core.Components
     /// <summary>
     /// Represents a motherboard device of machine. This class cannot be inherited
     /// </summary>
-    [DeviceComponent(ComponentType = "machine", DefaultTooltip = "Virtual machine", UserFriendlyName = "Machine")]
+    [DeviceComponent(ComponentType = "machine", DefaultTooltip = "Virtual machine", UserFriendlyName = "Machine", DeviceConfigurator = typeof(MachineConfigurator))]
     public sealed class MachineComponent : BaseDevice
     {
         [DeviceIgnoredProperty]

@@ -30,10 +30,10 @@ namespace craftersmine.LVM.Core.Configurators
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.machineName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.machineRootDir = new craftersmine.LVM.Util.Controls.PathSelector();
+            this.label2 = new System.Windows.Forms.Label();
+            this.machineName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,33 +53,6 @@ namespace craftersmine.LVM.Core.Configurators
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Machine Configuration";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Machine Name:";
-            // 
-            // machineName
-            // 
-            this.machineName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.machineName.Location = new System.Drawing.Point(6, 35);
-            this.machineName.Name = "machineName";
-            this.machineName.Size = new System.Drawing.Size(408, 20);
-            this.machineName.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 58);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Machine Root Directory:";
-            // 
             // machineRootDir
             // 
             this.machineRootDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -92,6 +65,34 @@ namespace craftersmine.LVM.Core.Configurators
             this.machineRootDir.SelectorType = craftersmine.LVM.Util.Controls.SelectorType.Folder;
             this.machineRootDir.Size = new System.Drawing.Size(408, 26);
             this.machineRootDir.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(122, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Machine Root Directory:";
+            // 
+            // machineName
+            // 
+            this.machineName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.machineName.Location = new System.Drawing.Point(9, 35);
+            this.machineName.Name = "machineName";
+            this.machineName.Size = new System.Drawing.Size(405, 20);
+            this.machineName.TabIndex = 1;
+            this.machineName.Text = "Unnamed Machine";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Machine Name:";
             // 
             // MachineConfigurator
             // 
