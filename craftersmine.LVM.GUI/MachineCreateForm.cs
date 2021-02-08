@@ -121,6 +121,7 @@ namespace craftersmine.LVM.GUI
 
         private void create_Click(object sender, EventArgs e)
         {
+            currentConfigurator.ApplyConfig(currentDevice);
             CreatedMachine = new Machine(machineComp.Address, machineComp.MachineRootDirectory, machineComp);
             CreatedMachine.DeviceBus.ConnectDevice(eeprom, eeprom.Address, false);
             CreatedMachine.DeviceBus.ConnectDevice(scr, scr.Address, false);
