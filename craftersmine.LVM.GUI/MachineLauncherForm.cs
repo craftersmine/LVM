@@ -53,7 +53,10 @@ namespace craftersmine.LVM.GUI
                 createForm.ShowDialog();
                 Machine createdMachine = createForm.CreatedMachine;
                 createdMachine.SaveMachine();
-                Properties.Settings.Default.AddedMachines.Add(createdMachine.MachineRootDirectory);
+                if (craftersmine.LVM.GUI.Properties.Settings.Default.AddedMachines == null)
+                    craftersmine.LVM.GUI.Properties.Settings.Default.AddedMachines = new System.Collections.Specialized.StringCollection();
+                craftersmine.LVM.GUI.Properties.Settings.Default.AddedMachines.Add(createdMachine.MachineRootDirectory);
+                craftersmine.LVM.GUI.Properties.Settings.Default.Save();
                 UpdateMachines();
             }
         }
@@ -90,6 +93,7 @@ namespace craftersmine.LVM.GUI
             {
                 string machineDir = (string)machines.SelectedItems[0].Tag;
             }
+            
         }
     }
 }
