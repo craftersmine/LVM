@@ -34,7 +34,7 @@ namespace craftersmine.LVM.GUI
         {
             if (devList.SelectedItems.Count > 0)
             {
-                CreatedDevice = Machine.CreateDevice<BaseDevice>((Type)devList.SelectedItems[0].Tag);
+                CreatedDevice = (BaseDevice)Machine.CreateDevice((Type)devList.SelectedItems[0].Tag);
             }
         }
 
