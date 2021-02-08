@@ -84,9 +84,11 @@ namespace craftersmine.LVM.GUI
             craftersmine.LVM.GUI.Properties.Settings.Default.Save();
         }
 
+        private void run_Click(object sender, EventArgs e)
+        {
+            if (machines.SelectedItems.Count > 0)
             {
-                var machine = Machine.LoadMachine(m);
-                machines.Items.Add(new ListViewItem() { Text = machine.MachineName, ImageKey = "default", Tag = machine });
+                string machineDir = (string)machines.SelectedItems[0].Tag;
             }
         }
     }
