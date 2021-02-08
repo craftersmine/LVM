@@ -164,6 +164,7 @@ namespace craftersmine.LVM.Core
             }
             Settings.LoggerInstance.Log(LogEntryType.Info, "Machine devices data saved!");
             Settings.LoggerInstance.Log(LogEntryType.Info, "Saving machine metadata...");
+            this.MachineName = machineComponent.MachineName;
             saveMachineMetadata(MachineRootDirectory, createMachineMetadata(MachineName, machineComponent.Address));
             Settings.LoggerInstance.Log(LogEntryType.Info, "Machine metadata saved!");
 
@@ -210,6 +211,7 @@ namespace craftersmine.LVM.Core
             MachineMetadata metadata = (MachineMetadata)serializer.Deserialize(reader);
 
             Machine machine = new Machine(metadata.MachineAddress, machineRootDir);
+            machine.MachineName = metadata.MachineName;
 
             var devices = LoadDevices(machineRootDir);
             foreach (var dev in devices)
